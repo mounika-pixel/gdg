@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversion - Precision Baking</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+         :root {
+            --primary-color: #ff9800;
+            --secondary-color: #e65100;
+            --text-dark: #333;
+            --text-light: #666;
+            --white: #ffffff;
+            --shadow: rgba(0, 0, 0, 0.1);
+        }
+        
+        body {
+            background: linear-gradient(135deg, #ffd54f 0%, #ffb74d 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        /* Navigation Bar */
+        
+        .navbar {
+            width: 100%;
+            background: var(--primary-color);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
+        }
+        
+        .navbar .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--white);
+        }
+        
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+        
+        .navbar ul li {
+            display: inline;
+        }
+        
+        .navbar ul li a {
+            text-decoration: none;
+            color: var(--white);
+            font-size: 1rem;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        
+        .navbar ul li a:hover {
+            color: var(--secondary-color);
+        }
+        /* Conversion Box */
+        
+        .conversion-box {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px var(--shadow);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+            margin-top: 80px;
+        }
+        
+        .conversion-box h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .input-group label {
+            font-size: 1rem;
+            color: var(--text-dark);
+            margin-bottom: 5px;
+        }
+        
+        .input-group input,
+        .input-group select {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid var(--text-light);
+            border-radius: 5px;
+        }
+        
+        .convert-btn {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 12px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+        
+        .convert-btn:hover {
+            background: var(--secondary-color);
+        }
+        
+        .result {
+            margin-top: 15px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--text-dark);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">Precision Bake</div>
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="conversion.html">Conversion</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="feedback.html">Feedback</a></li>
+            <li><a href="settings.html">Settings</a></li>
+        </ul>
+    </nav>
+
+    <!-- Conversion Box -->
+    <div class="conversion-box">
+        <h2>Convert Measurements</h2>
+
+        <div class="input-group">
+            <label for="ingredient">Ingredient Name:</label>
+            <input type="text" id="ingredient" placeholder="e.g., Sugar">
+        </div>
+
+        <div class="input-group">
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" placeholder="Enter quantity">
+        </div>
+
+        <div class="input-group">
+            <label for="unit">Select Unit:</label>
+            <select id="unit">
+                <option value="cups">Cups</option>
+                <option value="tablespoons">Tablespoons</option>
+                <option value="teaspoons">Teaspoons</option>
+                <option value="grams">Grams</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label for="brand">Brand/Type (Optional):</label>
+            <input type="text" id="brand" placeholder="e.g., Brown Sugar">
+        </div>
+
+        <button class="convert-btn" onclick="convert()">Convert</button>
+
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function convert() {
+            let ingredient = document.getElementById("ingredient").value.trim().toLowerCase();
+            let quantity = parseFloat(document.getElementById("quantity").value);
+            let unit = document.getElementById("unit").value;
+            let brand = document.getElementById("brand").value.trim().toLowerCase();
+
+            if (!ingredient || isNaN(quantity) || quantity <= 0) {
+                document.getElementById("result").innerHTML = "Please enter valid details.";
+                return;
+            }
+
+            let conversionRate = {
+                "sugar": {
+                    "cups": 200,
+                    "tablespoons": 12.5,
+                    "teaspoons": 4.2
+                },
+                "flour": {
+                    "cups": 120,
+                    "tablespoons": 7.5,
+                    "teaspoons": 2.5
+                },
+                "butter": {
+                    "cups": 227,
+                    "tablespoons": 14.2,
+                    "teaspoons": 4.7
+                }
+            };
+
+            let resultText = "";
+
+            if (conversionRate[ingredient] && conversionRate[ingredient][unit]) {
+                let grams = quantity * conversionRate[ingredient][unit];
+                resultText = `${quantity} ${unit} of ${brand ? brand + " " : ""}${ingredient} ≈ <b>${grams.toFixed(2)} grams</b>`;
+            } else {
+                resultText = "Conversion not available for this ingredient/unit.";
+            }
+
+            document.getElementById("result").innerHTML = resultText;
+        }
+    </script>
+
+</body>
+
+</html>

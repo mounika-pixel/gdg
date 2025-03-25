@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Precision Baking</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+         :root {
+            --primary-color: #ff9800;
+            --secondary-color: #e65100;
+            --text-dark: #333;
+            --text-light: #666;
+            --white: #ffffff;
+            --shadow: rgba(0, 0, 0, 0.1);
+        }
+        
+        body {
+            background: linear-gradient(135deg, #ffd54f 0%, #ffb74d 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        /* Navigation Bar */
+        
+        .navbar {
+            width: 100%;
+            background: var(--primary-color);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
+        }
+        
+        .navbar .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--white);
+        }
+        
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+        
+        .navbar ul li {
+            display: inline;
+        }
+        
+        .navbar ul li a {
+            text-decoration: none;
+            color: var(--white);
+            font-size: 1rem;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        
+        .navbar ul li a:hover {
+            color: var(--secondary-color);
+        }
+        /* About Section */
+        
+        .about {
+            text-align: center;
+            max-width: 800px;
+            margin-top: 100px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px var(--shadow);
+        }
+        
+        .about h1 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .about p {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+        }
+        
+        .faq {
+            margin-top: 20px;
+            text-align: left;
+        }
+        
+        .faq h2 {
+            color: var(--secondary-color);
+        }
+        
+        .faq ul {
+            list-style-type: none;
+        }
+        
+        .faq ul li {
+            margin-bottom: 10px;
+        }
+        
+        .contact {
+            margin-top: 20px;
+            text-align: left;
+        }
+        
+        .contact h2 {
+            color: var(--secondary-color);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">Precision Bake</div>
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="conversion.html">Conversion</a></li>
+            <li><a href="feedback.html">Feedback</a></li>
+            <li><a href="settings.html">Settings</a></li>
+        </ul>
+    </nav>
+
+    <!-- About Section -->
+    <div class="about">
+        <h1>About & Help</h1>
+        <p>Precision Baking is designed to help you achieve perfect baking results with accurate ingredient conversions.</p>
+
+        <div class="faq">
+            <h2>FAQs & Troubleshooting</h2>
+            <ul>
+                <li><strong>How do I convert ingredients?</strong> - Use the Conversion page to enter ingredients and get precise weight values.</li>
+                <li><strong>Why is my conversion not working?</strong> - Ensure you are entering a valid ingredient and unit (e.g., cups, spoons).</li>
+                <li><strong>Can I suggest a new feature?</strong> - Yes! Use the Feedback page to share your suggestions.</li>
+            </ul>
+        </div>
+
+        <div class="contact">
+            <h2>Contact & Support</h2>
+            <p>If you need further assistance, reach out to our support team:</p>
+            <p><strong>Email:</strong> support@precisionbake.com</p>
+            <p><strong>Phone:</strong> 8886613669</p>
+        </div>
+    </div>
+
+</body>
+
+</html>
